@@ -1,0 +1,41 @@
+{% extends "main/base.html" %}
+{% block title %}Клиенты{% endblock %}
+{% block content %}
+<h2>Список клиентов</h2>
+<form method="get" class="d-flex mb-3">
+    <input type="text" name="q" class="form-control me-2" placeholder="Поиск..." value="{{ request.GET.q }}">
+    <button type="submit" class="btn btn-outline-primary">Поиск</button>
+</form>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Контактное лицо</th>
+                <th>Телефон</th>
+                <th>Email</th>
+                <th>Адрес</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+            <tr>
+                <td>{{ client.profile.company_name }}</td>
+                <td>{{ client.profile.contact_person }}</td>
+                <td>{{ client.profile.phone }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.profile.address }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Клиенты не найдены</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="mt-4">
+    <a href="{% url 'home' %}" class="btn btn-secondary">Назад</a>
+</div>
+{% endblock %}

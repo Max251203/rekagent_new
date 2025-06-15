@@ -1,0 +1,19 @@
+{% extends "main/base.html" %}
+{% block title %}Профиль клиента{% endblock %}
+{% block content %}
+<h2>Профиль клиента</h2>
+<ul class="list-group form-compact mt-3">
+    <li class="list-group-item"><b>Имя пользователя:</b> {{ user.username }}</li>
+    <li class="list-group-item"><b>Email:</b> {{ user.email }}</li>
+    <li class="list-group-item"><b>Имя:</b> {{ user.first_name }}</li>
+    <li class="list-group-item"><b>Фамилия:</b> {{ user.last_name }}</li>
+    <li class="list-group-item"><b>Название компании:</b> {{ user.profile.company_name }}</li>
+    <li class="list-group-item"><b>Контактное лицо:</b> {{ user.profile.contact_person }}</li>
+    <li class="list-group-item"><b>Телефон:</b> {{ user.profile.phone }}</li>
+    <li class="list-group-item"><b>Адрес:</b> {{ user.profile.address }}</li>
+</ul>
+<div class="mt-3">
+    <a href="{% url 'profile_edit' %}" class="btn btn-primary">Редактировать профиль</a>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Назад</a>
+</div>
+{% endblock %}

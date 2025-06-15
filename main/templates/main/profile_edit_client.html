@@ -1,0 +1,48 @@
+{% extends "main/base.html" %}
+{% block title %}Редактировать профиль клиента{% endblock %}
+{% block content %}
+<h2>Редактировать профиль клиента</h2>
+<form method="post" class="form-compact mt-3">
+    {% csrf_token %}
+    <div class="mb-3 row align-items-center">
+        <label class="col-sm-4 col-form-label">Название компании</label>
+        <div class="col-sm-8">
+            {{ form.company_name }}
+            {% if form.company_name.errors %}
+            <div class="text-danger small">{{ form.company_name.errors|striptags }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="mb-3 row align-items-center">
+        <label class="col-sm-4 col-form-label">Контактное лицо</label>
+        <div class="col-sm-8">
+            {{ form.contact_person }}
+            {% if form.contact_person.errors %}
+            <div class="text-danger small">{{ form.contact_person.errors|striptags }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="mb-3 row align-items-center">
+        <label class="col-sm-4 col-form-label">Адрес</label>
+        <div class="col-sm-8">
+            {{ form.address }}
+            {% if form.address.errors %}
+            <div class="text-danger small">{{ form.address.errors|striptags }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="mb-3 row align-items-center">
+        <label class="col-sm-4 col-form-label">Телефон</label>
+        <div class="col-sm-8">
+            {{ form.phone }}
+            {% if form.phone.errors %}
+            <div class="text-danger small">{{ form.phone.errors|striptags }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-success">Сохранить</button>
+        <a href="{% url 'profile' %}" class="btn btn-secondary">Назад</a>
+    </div>
+</form>
+{% endblock %}

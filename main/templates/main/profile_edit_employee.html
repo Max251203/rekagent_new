@@ -1,0 +1,57 @@
+{% extends "main/base.html" %}
+{% block title %}Редактировать профиль сотрудника{% endblock %}
+{% block content %}
+<h2>Редактировать профиль сотрудника</h2>
+<form method="post" class="form-compact mt-3">
+    {% csrf_token %}
+    <div class="mb-3 row align-items-center">
+        <label class="col-sm-4 col-form-label">Должность</label>
+        <div class="col-sm-8">
+            {{ form.position }}
+            {% if form.position.errors %}
+            <div class="text-danger small">{{ form.position.errors|striptags }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="mb-3 row align-items-center">
+        <label class="col-sm-4 col-form-label">Отдел</label>
+        <div class="col-sm-8">
+            {{ form.department }}
+            {% if form.department.errors %}
+            <div class="text-danger small">{{ form.department.errors|striptags }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="mb-3 row align-items-center">
+        <label class="col-sm-4 col-form-label">Дата рождения</label>
+        <div class="col-sm-8">
+            {{ form.birth_date }}
+            {% if form.birth_date.errors %}
+            <div class="text-danger small">{{ form.birth_date.errors|striptags }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="mb-3 row align-items-center">
+        <label class="col-sm-4 col-form-label">Рабочий телефон</label>
+        <div class="col-sm-8">
+            {{ form.work_phone }}
+            {% if form.work_phone.errors %}
+            <div class="text-danger small">{{ form.work_phone.errors|striptags }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="mb-3 row align-items-center">
+        <label class="col-sm-4 col-form-label">Домашний телефон</label>
+        <div class="col-sm-8">
+            {{ form.home_phone }}
+            {% if form.home_phone.errors %}
+            <div class="text-danger small">{{ form.home_phone.errors|striptags }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-success">Сохранить</button>
+        <a href="{% url 'profile' %}" class="btn btn-secondary">Назад</a>
+    </div>
+</form>
+{% endblock %}

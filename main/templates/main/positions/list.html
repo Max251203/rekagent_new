@@ -1,0 +1,37 @@
+{% extends "main/base.html" %}
+{% block title %}Должности{% endblock %}
+{% block content %}
+<h2>Список должностей</h2>
+<a href="{% url 'position_create' %}" class="btn btn-success mb-3">➕ Добавить должность</a>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Оклад</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for position in positions %}
+            <tr>
+                <td>{{ position.name }}</td>
+                <td>{{ position.salary|floatformat:2 }}</td>
+                <td>
+                    <a href="{% url 'position_update' position.pk %}" class="btn btn-sm btn-primary">✏️</a>
+                    <a href="{% url 'position_delete' position.pk %}" class="btn btn-sm btn-danger">🗑️</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Должности не найдены</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="mt-4">
+    <a href="{% url 'home' %}" class="btn btn-secondary">Назад</a>
+</div>
+{% endblock %}
